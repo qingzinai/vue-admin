@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "../../../tclcode/mes-distribution-client"
+		},
+		{
+			"path": "../../vue-vben-admin"
+		},
+		{
+			"path": "../../../个人网站/qingzinai.github.io"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"i18n-ally.localesPaths": [
+			"src/utils/language"
+		]
+	}
+}

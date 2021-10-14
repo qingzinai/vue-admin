@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2021-10-08 15:28:09
- * @LastEditTime: 2021-10-12 17:52:08
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /mes-distribution-client/Users/ruler/Documents/vue3+ts/vue3ts/src/App.vue
--->
 <template>
   <input type="text" v-model="newToDoText">
   <button @click="addNewTodo">添加列表</button>
