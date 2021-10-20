@@ -1,3 +1,3 @@
-import axios from 'axios'
+import axios from '@/axios/http'
 
-export const test = (params: any) => axios.get('/api/list', { params: params })
+export const login = (params: any) => axios.get('/api/login', { params: params })

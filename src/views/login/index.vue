@@ -1,24 +1,26 @@
 <template>
   <div class="login-container">
-    <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
+    <a-form :model="formState" :rules="rules" ref="loginForm" @finish="handleFinish">
       <div class="title-container">
         <span class="title">Login Form</span>
       </div>
-      <a-form-item>
+      <a-form-item name="userName">
         <a-input v-model:value="userName">
           <template #prefix>
             <user-outlined type="user" />
           </template>
         </a-input>
       </a-form-item>
-      <a-form-item>
-        <a-input v-model:value="passWord">
+      <a-form-item name="passWord">
+        <a-input v-model:value="passWord" type="password">
           <template #prefix>
             <unlock-outlined />
           </template>
         </a-input>
       </a-form-item>
-      <a-button size="large" @click="aa" type="primary">登录</a-button>
+      <a-form-item>
+        <a-button size="large" type="primary" html-type="submit">登录</a-button>
+      </a-form-item>
     </a-form>
   </div>
 </template>
@@ -26,18 +28,54 @@
 import { reactive, toRefs } from 'vue'
 import type { UnwrapRef } from 'vue'
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons-vue'
-import { test } from '@/axios/api'
+import type { RuleObject } from 'ant-design-vue/es/form/interface'
+import { login } from '@/axios/api'
 interface FormState {
   userName: string
   passWord: string | number
 }
 const formState: UnwrapRef<FormState> = reactive({
-  userName: '',
-  passWord: ''
+  userName: 'admin',
+  passWord: '123456'
 })
-const aa = (): void => {
-  test({}).then((data) => {
-    console.log(data)
+const rules = {
+  userName: [
+    {
+      required: true,
+      validator: (_rule: RuleObject, value: string) => {
+        if (!value) {
+          return Promise.reject('请输入账号')
+        } else if (value !== 'admin') {
+          return Promise.reject('请输入正确的账号')
+        } else {
+          return Promise.resolve()
+        }
+      },
+      trigger: 'blur'
+    }
+  ],
+  passWord: [
+    {
+      required: true,
+      validator: (_rule: RuleObject, value: string | number) => {
+        if (!value) {
+          return Promise.reject('请输入密码')
+        } else if (value !== '123456') {
+          return Promise.reject('请输入正确的密码')
+        } else {
+          return Promise.resolve()
+        }
+      },
+      trigger: 'blur'
+    }
+  ]
+}
+const handleFinish = (values: FormState) => {
+  login({}).then((res: any) => {
+    if (res.data.code === '1') {
+      console.log(res)
+      localStorage.setItem('token', res.data.data.token)
+    }
   })
 }
 const { userName, passWord } = toRefs(formState)
@@ -57,8 +95,7 @@ const { userName, passWord } = toRefs(formState)
     overflow: hidden;
     margin: 0 auto;
     .ant-form-item {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
+      background: #2d3a4b;
       border-radius: 5px;
       color: #454545;
       .ant-input-affix-wrapper {
@@ -73,10 +110,14 @@ const { userName, passWord } = toRefs(formState)
         }
         .ant-input {
           background-color: rgba(0, 0, 0, 0);
+          color: #fff;
         }
       }
       .ant-input-affix-wrapper:hover {
         border-color: none;
+      }
+      .ant-btn {
+        width: 100%;
       }
     }
     .title-container {
@@ -88,9 +129,6 @@ const { userName, passWord } = toRefs(formState)
         color: #eee;
         font-weight: bold;
       }
-    }
-    .ant-btn {
-      width: 100%;
     }
   }
 }
