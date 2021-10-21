@@ -2,12 +2,10 @@
   <RouterView />
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
-export default defineComponent({
-  name: 'App',
-  components: {}
-})
-</script>
+<script lang="ts" setup></script>
 
-<style></style>
+<style>
+#app {
+  height: 100%;
+}
+</style>
