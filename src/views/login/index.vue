@@ -29,7 +29,10 @@ import { reactive, toRefs } from 'vue'
 import type { UnwrapRef } from 'vue'
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons-vue'
 import type { RuleObject } from 'ant-design-vue/es/form/interface'
+import { useRouter } from 'vue-router'
 import { login } from '@/axios/api'
+
+const router = useRouter()
 interface FormState {
   userName: string
   passWord: string | number
@@ -42,7 +45,7 @@ const rules = {
   userName: [
     {
       required: true,
-      validator: (_rule: RuleObject, value: string) => {
+      validator: (_rule: RuleObject, value: string): Promise<void | string> => {
         if (!value) {
           return Promise.reject('请输入账号')
         } else if (value !== 'admin') {
@@ -57,7 +60,7 @@ const rules = {
   passWord: [
     {
       required: true,
-      validator: (_rule: RuleObject, value: string | number) => {
+      validator: (_rule: RuleObject, value: string | number): Promise<void | string> => {
         if (!value) {
           return Promise.reject('请输入密码')
         } else if (value !== '123456') {
@@ -70,11 +73,11 @@ const rules = {
     }
   ]
 }
-const handleFinish = (values: FormState) => {
+const handleFinish = (values: FormState): void => {
   login({}).then((res: any) => {
     if (res.data.code === '1') {
-      console.log(res)
       localStorage.setItem('token', res.data.data.token)
+      router.push('/home')
     }
   })
 }
