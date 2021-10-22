@@ -7,17 +7,13 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const panes = ref([
-  { title: '首页', key: '1', closable: false },
-  { title: 'Tab 2', key: '2' },
-  { title: 'Tab 3', key: '3' }
-])
+const panes = ref([{ title: '首页', key: '1', closable: false }])
 const activeKey = ref(panes.value[0].key)
 const newTabIndex = ref(0)
-const callback = (key: string) => {
+const callback = (key: string): void => {
   console.log(key)
 }
-const remove = (targetKey: string) => {
+const remove = (targetKey: string): void => {
   let lastIndex = 0
   panes.value.forEach((pane, i) => {
     if (pane.key === targetKey) {
