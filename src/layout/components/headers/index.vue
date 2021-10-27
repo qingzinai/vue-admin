@@ -1,13 +1,26 @@
 <template>
   <a-layout-header style="background: #fff; padding: 0">
-    <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
-    <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+    <menu-unfold-outlined v-if="collapsed" class="trigger" @click="changeCollapsed" />
+    <menu-fold-outlined v-else class="trigger" @click="changeCollapsed" />
   </a-layout-header>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UserOutlined, VideoCameraOutlined, UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-const collapsed = ref<boolean>(false)
+import { reactive, computed } from 'vue'
+import { useStore, mapMutations } from 'vuex'
+import { useMapState } from '@/hooks/useMapState'
+import { key } from '@/store/index'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+
+const store = useStore(key)
+
+let collapsed = computed(() => {
+  const state = useMapState(['collapsed'])
+  return reactive(state)
+})
+const changeCollapsed = () => {
+  store.dispatch('collapsed/changeCollapsed')
+  console.log(collapsed)
+}
 </script>
 
 <style lang="scss" setup>
