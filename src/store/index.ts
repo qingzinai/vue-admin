@@ -1,18 +1,14 @@
 import { createStore, Store } from 'vuex'
 import { InjectionKey } from 'vue'
-
 export const key: InjectionKey<Store<state>> = Symbol('key')
+import tabList from '@/store/modules/tabList'
+import collapsed from '@/store/modules/collapsed'
 
-export type state = {
-  count: number
-}
+export type state = {}
+
 export default createStore({
-  state: {
-    count: 0
-  },
-  mutations: {
-    add(state: any) {
-      state.count += 1
-    }
+  modules: {
+    tabList,
+    collapsed
   }
 })

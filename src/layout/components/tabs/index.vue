@@ -6,21 +6,22 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-const panes = ref([{ title: '首页', key: '1', closable: false }])
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
+import { useMapState } from '@/hooks/useMapState'
+import { key } from '@/store/index'
+
+const store = useStore(key)
+let panes = ref(useMapState(['tabList']).tabList.value.tabList)
 const activeKey = ref(panes.value[0].key)
-const newTabIndex = ref(0)
-const callback = (key: string): void => {
-  console.log(key)
-}
 const remove = (targetKey: string): void => {
   let lastIndex = 0
-  panes.value.forEach((pane, i) => {
+  panes.value.forEach((pane: { key: string }, i: number) => {
     if (pane.key === targetKey) {
       lastIndex = i - 1
     }
   })
-  panes.value = panes.value.filter(pane => pane.key !== targetKey)
+  panes.value = panes.value.filter((pane: { key: string }) => pane.key !== targetKey)
   if (panes.value.length && activeKey.value === targetKey) {
     if (lastIndex >= 0) {
       activeKey.value = panes.value[lastIndex].key

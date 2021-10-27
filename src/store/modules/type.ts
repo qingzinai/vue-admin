@@ -1,0 +1,6 @@
+const UP_MENU_TABLIST = 'UP_MENU_TABLIS'
+const CHANGE_COLLAPSED = 'CHANGE_COLLAPSED'
+export default {
+  UP_MENU_TABLIST, // 菜单tab增加
+  CHANGE_COLLAPSED //切换菜单缩放
+}
