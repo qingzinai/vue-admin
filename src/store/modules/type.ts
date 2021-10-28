@@ -1,6 +1,10 @@
 const UP_MENU_TABLIST = 'UP_MENU_TABLIS'
 const CHANGE_COLLAPSED = 'CHANGE_COLLAPSED'
+const SET_ACTIVE_TABLE = 'SET_ACTIVE_TABLE'
+const REMOVE_TAB_LIST = 'REMOVE_TAB_LIST'
 export default {
   UP_MENU_TABLIST, // 菜单tab增加
-  CHANGE_COLLAPSED //切换菜单缩放
+  CHANGE_COLLAPSED, //切换菜单缩放
+  SET_ACTIVE_TABLE, //设置当前选中样式,
+  REMOVE_TAB_LIST //删除tablist里的值
 }

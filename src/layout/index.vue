@@ -1,6 +1,6 @@
 <template>
   <a-layout>
-    <a-layout-sider :trigger="null" collapsible>
+    <a-layout-sider :trigger="null" v-model:collapsed="collapsed">
       <Menu />
     </a-layout-sider>
     <a-layout>
@@ -17,6 +17,14 @@ import AppMain from '@/layout/components/AppMian.vue'
 import MultipleTabs from '@/layout/components/tabs/index.vue'
 import Menu from '@/layout/components/menu/index.vue'
 import Header from '@/layout/components/headers/index.vue'
+import { useStore, mapMutations } from 'vuex'
+import { key } from '@/store/index'
+import { computed } from 'vue'
+const store = useStore(key)
+
+let collapsed = computed(() => {
+  return store.state.collapsed.collapsed
+})
 </script>
 <style lang="scss" scoped>
 #app .ant-layout {
