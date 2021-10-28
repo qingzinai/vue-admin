@@ -6,12 +6,16 @@ const routes = [
     path: '/',
     component: () => import('@/layout/index.vue'),
     redirect: '/home',
-    children: [{ path: '/home', name: 'home', component: () => import('@/views/home/index.vue') }]
+    children: [
+      { path: '/home', name: 'home', component: () => import('@/views/home/index.vue') },
+      { path: '/page1', name: 'page1', component: () => import('@/views/page1/index.vue') },
+      { path: '/page2', name: 'page2', component: () => import('@/views/page2/index.vue') }
+    ]
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),//createWebHashHistory(),
+  history: createWebHistory(), //createWebHashHistory(),
   routes
 })
 

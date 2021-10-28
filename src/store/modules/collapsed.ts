@@ -5,7 +5,6 @@ const state = {
 const getters = {}
 const mutations = {
   [types.CHANGE_COLLAPSED](state: any) {
-    console.log(state.collapsed)
     return (state.collapsed = !state.collapsed)
   }
 }
@@ -14,6 +13,7 @@ const actions = {
     commit(types.CHANGE_COLLAPSED)
   }
 }
+
 export default {
   namespaced: true,
   state,
