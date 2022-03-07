@@ -8,15 +8,20 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import { useMapState } from '@/hooks/useMapState'
 import { key } from '@/store/index'
 
 const store = useStore(key)
-let panes = computed(() => {
-  return store.state.tabList.tabList
+let panes = computed({
+  get(){
+    return store.state.tabList.tabList
+  },
+  set(){}
 })
-let activeKey = computed(() => {
-  return store.state.tabList.activeKey[0]
+let activeKey = computed({
+  get(){
+    return store.state.tabList.activeKey[0]
+  },
+  set(){}
 })
 const avtiveChange = (activeKey: any) => {
   store.dispatch('tabList/setActiveTable', { activeKey: activeKey })
@@ -25,7 +30,7 @@ const onEdit = (targetKey: string) => {
   remove(targetKey)
 }
 const remove = (targetKey: any) => {
-  store.dispatch('tabList/removeTabList', { targetKey: targetKey })
+  store.dispatch('tabList/removeTabList')
 }
 </script>
 <style lang="scss">

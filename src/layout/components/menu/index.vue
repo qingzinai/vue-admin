@@ -27,15 +27,21 @@ import { useStore, mapMutations } from 'vuex'
 import { key } from '@/store/index'
 
 const store = useStore(key)
-let selectedKeys: any = computed(() => {
-  return store.state.tabList.activeKey
+let selectedKeys: any = computed({
+  get(){
+    return store.state.tabList.activeKey
+  },
+  set(val){
+  }
 })
-
 const selectMenu = (item: any, key: string, keyPath: string) => {
   store.dispatch('tabList/upMenuTabList', { menuItem: item, key: key })
 }
-const collapsed = computed(() => {
-  return store.state.collapsed.collapsed
+const collapsed = computed({
+  get(){
+    return store.state.collapsed.collapsed
+  },
+  set(){}
 })
 </script>
 <style lang="scss" scoped>

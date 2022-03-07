@@ -28,8 +28,11 @@ import { useRouter } from 'vue-router'
 const store = useStore(key)
 const router = useRouter()
 
-let collapsed = computed(() => {
-  return store.state.collapsed.collapsed
+let collapsed = computed({
+  get(){
+    return store.state.collapsed.collapsed
+  },
+  set(){}
 })
 const changeCollapsed = () => {
   store.dispatch('collapsed/changeCollapsed')

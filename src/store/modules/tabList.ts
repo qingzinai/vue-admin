@@ -27,9 +27,9 @@ const mutations = {
     state.activeKey = [payload.activeKey]
     router.push({ path: state.activeKey[0] })
   },
-  [types.REMOVE_TAB_LIST](state: any, payload: any) {
+  [types.REMOVE_TAB_LIST](state: any) {
     state.tabList.map((item: any, index: number) => {
-      if (payload.targetKey === item.key) {
+      if (String(state.activeKey) === item.key) {
         state.tabList.splice(index, 1)
         state.activeKey = [state.tabList[state.tabList.length - 1].key]
       }
@@ -43,8 +43,8 @@ const actions = {
   setActiveTable({ commit }: any, payload: any) {
     commit(types.SET_ACTIVE_TABLE, payload)
   },
-  removeTabList({ commit }: any, payload: any) {
-    commit(types.REMOVE_TAB_LIST, payload)
+  removeTabList({ commit }: any) {
+    commit(types.REMOVE_TAB_LIST)
   }
 }
 export default {

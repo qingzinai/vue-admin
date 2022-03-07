@@ -22,8 +22,11 @@ import { key } from '@/store/index'
 import { computed } from 'vue'
 const store = useStore(key)
 
-let collapsed = computed(() => {
-  return store.state.collapsed.collapsed
+let collapsed = computed({
+  get(){
+    return store.state.collapsed.collapsed
+  },
+  set(){}
 })
 </script>
 <style lang="scss" scoped>
