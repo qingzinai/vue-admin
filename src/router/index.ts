@@ -18,5 +18,20 @@ const router = createRouter({
   history: createWebHistory(), //createWebHashHistory(),
   routes
 })
+/**
+ * 验证是否登录
+ */
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next()
+  } else {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      next('/login')
+    } else {
+      next()
+    }
+  }
+})
 
 export default router
