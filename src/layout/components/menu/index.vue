@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="logo">
-      <img src="@/assets/logo.png" alt="" />
-      <div class="text" v-show="!collapsed">vue3-boilerplate</div>
+      <img src="@/assets/headico.jpg" alt="" />
+      <div class="text" v-show="!collapsed">FstXizya</div>
     </div>
     <a-menu v-model:selectedKeys="selectedKeys" @select="selectMenu" theme="dark" mode="inline">
       <a-menu-item key="/home" title="首页">
@@ -53,14 +53,20 @@ const collapsed = computed({
   text-align: center;
   font-size: 18px;
   font-weight: 500;
-  background-color: green;
+  background-color: #20212c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   img {
     width: 40px;
     height: 40px;
     display: inline-block;
-    margin-right: 10px;
+    //margin-right: 10px;
+    border-radius: 40px;
+    left: 0;
   }
   .text {
+    flex: 0.7;
     display: inline-block;
   }
 }

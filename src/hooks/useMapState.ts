@@ -14,5 +14,6 @@ export function useMapState(mapper: any) {
     const fn = storeStateFns[fnKey].bind({ $store: store })
     storeState[fnKey] = computed(fn)
   })
+
   return storeState
 }

@@ -38,6 +38,7 @@ const changeCollapsed = () => {
   store.dispatch('collapsed/changeCollapsed')
 }
 const logOut = () => {
+
   router.push({ path: '/login' })
 }
 </script>
