@@ -7,30 +7,27 @@
 </template>
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-import { key } from '@/store/index'
-
-const store = useStore(key)
+import Store from "@/store";
 let panes = computed({
   get(){
-    return store.state.tabList.tabList
+    return Store.tableListStore().tabList
   },
   set(){}
 })
 let activeKey = computed({
   get(){
-    return store.state.tabList.activeKey[0]
+    return Store.tableListStore().activeKey[0]
   },
   set(){}
 })
 const avtiveChange = (activeKey: any) => {
-  store.dispatch('tabList/setActiveTable', { activeKey: activeKey })
+  Store.tableListStore().setActiveTab( { activeKey: activeKey })
 }
 const onEdit = (targetKey: string) => {
   remove(targetKey)
 }
 const remove = (targetKey: any) => {
-  store.dispatch('tabList/removeTabList')
+  Store.tableListStore().removeTabList({ targetKey: targetKey })
 }
 </script>
 <style lang="scss">

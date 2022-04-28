@@ -27,9 +27,7 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
         next()
     } else {
-        let store :any = state.state;
-        let token  =  store.loginCheck.token != null && store.loginCheck.token != ''  ;
-        // console.log(state.getters["loginCheck/getToken"])
+        let token = localStorage.getItem('token');
         if (!token) {
             next('/login')
         } else {

@@ -17,14 +17,12 @@ import AppMain from '@/layout/components/AppMian.vue'
 import MultipleTabs from '@/layout/components/tabs/index.vue'
 import Menu from '@/layout/components/menu/index.vue'
 import Header from '@/layout/components/headers/index.vue'
-import { useStore, mapMutations } from 'vuex'
-import { key } from '@/store/index'
 import { computed } from 'vue'
-const store = useStore(key)
+import Store from "@/store";
 
 let collapsed = computed({
   get(){
-    return store.state.collapsed.collapsed
+    return Store.collapsedStore().collapsed
   },
   set(){}
 })

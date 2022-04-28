@@ -19,23 +19,22 @@
 </template>
 <script lang="ts" setup>
 import { reactive, computed } from 'vue'
-import { useStore, mapMutations } from 'vuex'
 import { useMapState } from '@/hooks/useMapState'
-import { key } from '@/store/index'
 import { MenuUnfoldOutlined, MenuFoldOutlined, DownOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
-
-const store = useStore(key)
+import Store from "@/store";
 const router = useRouter()
+
+const  store = Store.collapsedStore();
 
 let collapsed = computed({
   get(){
-    return store.state.collapsed.collapsed
+    return store.collapsed
   },
   set(){}
 })
 const changeCollapsed = () => {
-  store.dispatch('collapsed/changeCollapsed')
+  store.changeCollapsed()
 }
 const logOut = () => {
 

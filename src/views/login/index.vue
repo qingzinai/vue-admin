@@ -31,7 +31,6 @@ import {UserOutlined, UnlockOutlined} from '@ant-design/icons-vue'
 import type {RuleObject} from 'ant-design-vue/es/form/interface'
 import {useRouter} from 'vue-router'
 import {login} from '@/axios/api'
-import store from '@/store'
 const router = useRouter()
 
 interface FormState {
@@ -78,8 +77,7 @@ const rules = {
 const handleFinish = (values: FormState): void => {
   login({}).then((res: any) => {
     if (res.data.code === '1') {
-      // localStorage.setItem('token', res.data.data.token)
-      store.commit('loginCheck/login',  res.data.data.token );
+      localStorage.setItem('token', res.data.data.token)
       router.push('/home')
 
     }

@@ -23,23 +23,20 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
-import { useStore, mapMutations } from 'vuex'
-import { key } from '@/store/index'
-
-const store = useStore(key)
+import Store from "@/store";
 let selectedKeys: any = computed({
   get(){
-    return store.state.tabList.activeKey
+    return Store.tableListStore().activeKey
   },
   set(val){
   }
 })
 const selectMenu = (item: any, key: string, keyPath: string) => {
-  store.dispatch('tabList/upMenuTabList', { menuItem: item, key: key })
+  Store.tableListStore().upMenuTabList( { menuItem: item, key: key })
 }
 const collapsed = computed({
   get(){
-    return store.state.collapsed.collapsed
+    return Store.collapsedStore().collapsed
   },
   set(){}
 })
