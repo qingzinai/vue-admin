@@ -16,7 +16,7 @@
     "path": "^0.12.7",
     "vue": "^3.0.5",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "pinia": "^2.0.13"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.4",
